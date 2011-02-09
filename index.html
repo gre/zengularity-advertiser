@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>Zenexity</title>
+	<meta charset="utf-8" />
+        <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+        <style>
+
+@font-face {
+  font-family: Ubuntu;
+  src: url('Ubuntu-R.ttf');
+}
+@font-face {
+  font-family: Ubuntu;
+  font-weight: bold;
+  src: url('Ubuntu-B.ttf');
+}
+@font-face {
+  font-family: Ubuntu;
+  font-weight: bold;
+	font-style: italic;
+  src: url('Ubuntu-BI.ttf');
+}
+@font-face {
+  font-family: Ubuntu;
+	font-style: italic;
+  src: url('Ubuntu-I.ttf');
+}
+body {
+    font-family: Ubuntu;
+    color: #333;
+    background: #EEE;
+    margin: 0px;
+		padding: 0px;
+		font-size: 230%;
+}
+h1 {
+	font-weight: bold;
+}
+h2 {
+		font-style: italic;
+		text-align: right;
+}
+
+#wrapper, section {
+		width: 1920px;
+		height: 1080px;
+		overflow: hidden;
+}
+
+section.current {
+		opacity: 1;
+}
+section {
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		-webkit-transition-duration: 1s;
+}
+
+section.current img {
+		-webkit-transform: scale(1) translate(0, 0);
+}
+
+section img {
+		-webkit-transition-duration: 1s;
+		-webkit-transition-delay: 1s;
+		-webkit-transform: scale(0.5) translate(-800px, 0);
+}
+
+section.current .detail {
+		-webkit-transform: translate(0, 0);
+}
+
+section .detail {
+		-webkit-transition-duration: 1s;
+		-webkit-transform: translate(0, 1080px);
+}
+
+section {
+		height: 1080px;
+}
+section caption {
+		width: 30%;
+		display: inline-block;
+		vertical-align: top;
+}
+section .detail {
+		width: 62%;
+		padding: 4%;
+		display: inline-block;
+		vertical-align: top;
+}
+
+
+        </style>
+				<script type="text/javascript">
+				$(function(){
+						var i = 0;
+						var len = $('section').size();
+						var incrSlide = function(){
+								$('section').eq(i).addClass('current').siblings().addClass('hide').removeClass('current');
+								i = i<len-1 ? i+1 : 0;
+						};
+						incrSlide();
+						setInterval(incrSlide, 15000);
+						var ws = new WebSocket('ws://slider');
+						ws.onmessage = incrSlide;
+				})
+				</script>
+    </head>
+		<body>
+				<div id="wrapper">
+						<section>
+								<caption>
+										<img height="1080px" src="eca.jpg" />
+								</caption>
+								<div class="detail">
+										<h1>Web Workers: a modern approach to multi-core</h1>
+										<h2>Earle Castledine</h2>
+										<div class="content">
+												As multi-core computers proliferate, we look for ways to effectively and easily take advantage of this new power. The paradigm familiar in enterprise, threads - are powerful, but too low level. In this talk we'll look at how JavaScript and HTML5 provide us with a more declarative, message-passing approach in form of Web Workers, and see how it is an approach based on simplicity, isolation & security. 
+										</div>
+								</div>
+						</section>
+						
+						<section>
+								<caption>
+										<img height="1080px" src="scr.jpg" />
+								</caption>
+								<div class="detail">
+										<h1>Le mobile java/objective-c ou html/css/javascript</h1>
+										<h2>Sebastien CREME</h2>
+										<div class="content">
+												Le mobile est le nouveau cheval de bataille du marketing, mais comment adresser ce besoin toujours plus grand avec une architecture urbanisée, pérenne et qui réponde à la pléthore de combinaisons (hard/soft)ware, et au nombre toujours grandissant d'offres type appstore.
+												<br/>
+												Nous verrons comment le développement multiplateforme existe avec la woa avec des exemples concrets de réalisations et pourquoi cela reste une utopie avec les développements natifs (java, objective-c).
+										</div>
+								</div>
+						</section>
+						
+						<section>
+								<caption>
+										<img height="1080px" src="sdr.jpg" />
+								</caption>
+								<div class="detail">
+										<h1>Data transformation and integration</h1>
+										<h2>Sadek DROBI</h2>
+										<div class="content">A fair part of enterprise application development is about data transformation and integration. Java and JEE, however, offer tools that are at best too static and at worst not adapted to these needs. In this 20 minute talk, you'll see how javascript offers better foundation for data adaptation and get introduced to the use of some interesting libraries and APIs.</div>
+								</div>
+						</section>
+						
+						<section>
+								<caption>
+										<img height="1080px" src="elo.jpg" />
+								</caption>
+								<div class="detail">
+										<h1>Sortir du carcan de la page web: extensions de navigateur ou applet Java ?</h1>
+										<h2>Erwan Loisant</h2>
+										<div class="content">
+												Il arrive que les contraintes de sécurité du web entravent le développement d'un projet. Cela peut-être l'utilisation d'un périphérique matériel, des calculs complexes à réaliser côté client, ou encore une fonctionalité non encore supporté nativement par les navigateurs. Dans ces cas la réponse a souvent été ActiveX ou les applets Java. Aujourd'hui, les extensions de navigateurs permettent d'aller encore plus loin dans l'intégration avec le poste utilisateur tout en se plaçant dans la continuité des technologies utilisés dans les applications web. Nous verrons les approches proposées par les différents éditeurs de navigateurs, et leurs avantages et inconvéniants par rapport à l'approche classique des applet Java et d'ActiveX.
+										</div>
+								</div>
+						</section>
+				</div>
+    </body>
+</html>
