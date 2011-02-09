@@ -4,27 +4,23 @@
 	<title>Zenexity</title>
 	<meta charset="utf-8" />
         <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
-        
-				<script type="text/javascript">
+        <script type="text/javascript">
 				$(function(){
             var TIME = 15000;
             var WIDTH = '100%';
             var HEIGHT = '100%';
             
             if(location.hash) {
-              var spl = location.hash.substring(1).split(':');
-              if(spl[0]) spl[0] = parseInt(spl[0]);
-              if(!isNaN(spl[0])) TIME = spl[0];
-              if(spl[1]) WIDTH = spl[1];
-              if(spl[2]) HEIGHT = spl[2];
+              var t = location.hash.substring(1);
+              if(t) t = parseInt(t);
+              if(!isNaN(t)) TIME = t;
             }
-            
-            location.hash = TIME +':'+ WIDTH +':'+ HEIGHT;
+            location.hash = TIME;
             
             $('#wrapper, section').css({width: WIDTH, height: HEIGHT});
             
             $(window).resize(function(){
-              var fontSize = Math.floor($('body').width()/60)+'px';
+              var fontSize = Math.floor($('#wrapper').width()/50)+'px';
               $('body').css('font-size', fontSize);
             }).resize();
             
@@ -122,7 +118,7 @@ section caption {
 		vertical-align: top;
 }
 section .detail {
-		width: 62%;
+		width: 70%;
 		padding: 4%;
 		display: table-cell;
 		vertical-align: top;
